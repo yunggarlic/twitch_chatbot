@@ -28,19 +28,23 @@ function onMessageHandler(target, context, msg, self) {
 
   // Remove whitespace from chat message
   const commandName = msg.trim();
-
-  // If the command is known, let's execute it
-  if (commandName === '!dice') {
-    const num = rollDice();
-    client.say(target, `You rolled a ${num}`);
-    console.log(`* Executed ${commandName} command`);
-  } else if (commandName === '!lurk') {
-    client.say(
-      target,
-      `${target.slice(1, target.length)} has entered the fucking chill zone.`
-    );
-  } else {
-    console.log(`* Unknown command ${commandName}`);
+  if (commandName.slice(0, 1) === '!') {
+    switch (commandName) {
+      case '!dice':
+        const num = rollDice();
+        client.say(target, `${context['display-name']} rolled a ${num}`);
+        console.log(`* Executed ${commandName} command`);
+        break;
+      case '!lurk':
+        client.say(
+          target,
+          `${context['display-name']} entered the chill zone.`
+        );
+        break;
+      default:
+        console.log(context['display-name']);
+        console.log(`* Unknown command ${commandName}`);
+    }
   }
 }
 
