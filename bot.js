@@ -34,6 +34,11 @@ function onMessageHandler(target, context, msg, self) {
     const num = rollDice();
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
+  } else if (commandName === '!lurk') {
+    client.say(
+      target,
+      `${target.slice(1, target.length)} has entered the fucking chill zone.`
+    );
   } else {
     console.log(`* Unknown command ${commandName}`);
   }
