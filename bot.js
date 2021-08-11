@@ -33,17 +33,15 @@ function onMessageHandler(target, context, msg, self) {
       case '!dice':
         const num = rollDice();
         client.say(target, `${context['display-name']} rolled a ${num}`);
-        console.log(`* Executed ${commandName} command`);
-        break;
       case '!lurk':
         client.say(
           target,
           `${context['display-name']} entered the chill zone.`
         );
-        break;
       default:
         console.log(context['display-name']);
-        console.log(`* Unknown command ${commandName}`);
+        console.log(`Message event: ${commandName}`);
+        console.log(`target --> ${target}`);
     }
   }
 }
@@ -52,6 +50,25 @@ function onMessageHandler(target, context, msg, self) {
 function rollDice() {
   const sides = 6;
   return Math.floor(Math.random() * sides) + 1;
+}
+
+//Timed Messages
+// 30 minutes
+setTimeout(enjoyingStream, 1800000);
+setTimeout(lurkReminder, 2100000);
+
+function enjoyingStream() {
+  client.say(
+    target,
+    `Enjoying the stream? Be sure to SMASH that follow button.`
+  );
+}
+
+function lurkReminder() {
+  client.say(
+    target,
+    `Want to support the stream but need to mute and minimize? Type !lurk into the chat to make sure your view goes to our precious, precious view count. Big numbers baby, big numbers.`
+  );
 }
 
 // Called every time the bot connects to Twitch chat
